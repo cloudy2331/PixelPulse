@@ -1,0 +1,4 @@
+repository "PixelPulse@ssl://cloudy233@cloud.cn"
+  path "/"
+    br "/main"
+    co "/main"
