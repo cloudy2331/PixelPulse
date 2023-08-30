@@ -6,7 +6,7 @@ using TMPro;
 public class PointManager : MonoBehaviour
 {
     public TMP_Text comboText;
-    public int combo = 0, miss = 0;
+    public int combo = 0, miss = 0, maxCombo = 0;
     public delegate void ComboDelegate();
     public event ComboDelegate ComboEvent;
 
@@ -44,7 +44,7 @@ public class PointManager : MonoBehaviour
         }
 
         //ui
-        S_Combo.text = combo.ToString() + "\n" + "Combo";
+        S_Combo.text = maxCombo.ToString() + "\n" + "Combo";
         S_Miss.text = miss.ToString() + "\n" + "Miss";
         if (isSettlement)
         {
@@ -59,10 +59,18 @@ public class PointManager : MonoBehaviour
     public void AddCombo()
     {
         combo += 1;
+        if (combo > maxCombo)
+        {
+            maxCombo = combo;
+        }
     }
     public void ClearCombo()
     {
         combo = 0;
+    }
+    public void ClearMaxCombo()
+    {
+        maxCombo = 0;
     }
     public void AddMiss()
     {

@@ -309,6 +309,10 @@ public class AudioSpectrumVisualizer : MonoBehaviour
                 case "ogg":
                     audioType = AudioType.OGGVORBIS;
                     break;
+
+                case "flac":
+                    audioType = AudioType.UNKNOWN;
+                    break;
             }
 
             StartCoroutine(LoadAudioFileCoroutine(filePath, audioType));
@@ -345,6 +349,10 @@ public class AudioSpectrumVisualizer : MonoBehaviour
                 case "ogg":
                     audioType = AudioType.OGGVORBIS;
                     break;
+
+                case "flac":
+                    audioType = AudioType.UNKNOWN;
+                    break;
             }
             StartCoroutine(LoadAudioFileCoroutine(folderPath + "/audio." + MapData.AudioType, audioType));
         }
@@ -366,6 +374,8 @@ public class AudioSpectrumVisualizer : MonoBehaviour
                 AnalyzeBPM();
                 Debug.Log("加载完成");
                 pm.ComboEvent += pm.ClearMiss;
+                pm.ComboEvent += pm.ClearCombo;
+                pm.ComboEvent += pm.ClearMaxCombo;
                 pm.Combo();
                 isPlayGame = true;
             }
@@ -508,6 +518,10 @@ public class AudioSpectrumVisualizer : MonoBehaviour
 
     string OpenFile()
     {
+        var extensions = new[] {
+            new ExtensionFilter("Sound Files", "mp3", "wav", "flac"),
+            new ExtensionFilter("All Files", "*")
+        };
         switch (Application.platform)
         {
             case RuntimePlatform.WindowsPlayer:
@@ -540,26 +554,26 @@ public class AudioSpectrumVisualizer : MonoBehaviour
                 {
                     return null;
                 }*/
-                var extensions = new[] {
-                    new ExtensionFilter("Sound Files", "mp3", "wav"),
+                /*var extensions = new[] {
+                    new ExtensionFilter("Sound Files", "mp3", "wav", "flac"),
                     new ExtensionFilter("All Files", "*")
-                };
+                };*/
                 string path = StandaloneFileBrowser.OpenFilePanel("", "", extensions, false)[0];
                 return path;
 
             case RuntimePlatform.WindowsEditor:
-                extensions = new[] {
+                /*extensions = new[] {
                     new ExtensionFilter("Sound Files", "mp3", "wav"),
                     new ExtensionFilter("All Files", "*")
-                };
+                };*/
                 path = StandaloneFileBrowser.OpenFilePanel("", "", extensions, false)[0];
                 return path;
 
             case RuntimePlatform.WebGLPlayer:
-                extensions = new[] {
+                /*extensions = new[] {
                     new ExtensionFilter("Sound Files", "mp3", "wav"),
                     new ExtensionFilter("All Files", "*")
-                };
+                };*/
                 path = StandaloneFileBrowser.OpenFilePanel("", "", extensions, false)[0];
                 return path;
         }
