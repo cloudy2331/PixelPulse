@@ -1,6 +1,7 @@
 Library/
 Temp/
 .vscode/
+.plastic/
 Logs/
 UserSettings/
 Packages/
