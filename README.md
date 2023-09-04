@@ -1,6 +1,8 @@
 # PixelPulse
 The name was taken by ChatGPT​
 
+release: <a src="https://cloudy2331.itch.io/pixelpulse">itch.io</a>
+
 This is an open-source music game. You can use map by yourself or auto automatically generate map. In the future, we will provide AI generation solutions. In this game, you need to use the space bar to control the character to move up and down and step on barriers.
 
 ---
